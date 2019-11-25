@@ -1,27 +1,23 @@
-import React from 'react';
-import {Car} from './car' 
-import {Scene} from './scene'
-import {Countdown} from './countdown'
+import React from 'react'
+import carImage from './images/CARRO.png'
 import KeyboardEventHandler from 'react-keyboard-event-handler';
-import './App.css';
 
 
-function App() {
-  const [position , setPosition] = React.useState({left: '30%' })
-  const[blocked ,setBlocked]=React.useState(false)
-  return (
-    <div className="App">
-    <Countdown/>
-    <Scene blocked = {blocked}/>
-    <Car position= {position}/>   
+export const Car = ({position}) =>{
 
+    // const [position , setPosition] = React.useState({left: '30%' })
+    return(
+        <div style ={{ 
+            position: 'absolute',
+            bottom: '20%', 
+            ...position
+             }}>
+            <img src={carImage} className= "App-car"  alt='car' />
 
-    <KeyboardEventHandler
+        {/* <KeyboardEventHandler
             handleKeys={['all']}
             onKeyEvent={(key, e) => {
                 switch(key){ 
-                  case 'esc':
-                    return setBlocked(!blocked)
                     case 'a':
                     return setPosition({left:'0%' })
                     case 's':
@@ -45,14 +41,9 @@ function App() {
                     default:
                     return position
                 }
-            }} />
+            }} /> */}
+        </div>
+    )
 
 
-    </div>
-
-
-
-  );
 }
-
-export default App;
