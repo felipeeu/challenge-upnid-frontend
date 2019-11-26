@@ -22,7 +22,14 @@
   font-weight: 800;
 }
 
-
+.App-button{
+  position: absolute;
+  width: 30vw;
+  border-radius: 5px;
+  bottom: 15px;
+  left: 5px;
+  font-size: xx-large;
+}
 
 .App-link {
   color: #09d3ac;

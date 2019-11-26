@@ -2,48 +2,54 @@ import React from 'react';
 import {Car} from './car' 
 import {Scene} from './scene'
 import {Countdown} from './countdown'
+import {StartButton} from './startbutton'
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import './App.css';
 
 
-
 function App() {
-  const [position , setPosition] = React.useState({left: '30%' })
-  const[blocked ,setBlocked]=React.useState(false)
+  const [position, setPosition] = React.useState({left: '30%'})
+  const [blocked, setBlocked] = React.useState(true)
   const [seconds, setSeconds] = React.useState(3)
-  const [starting,setStarting]= React.useState(true)
+  const [starting, setStarting] = React.useState(false)
+  
 
 
-  React.useEffect(() => {
+React.useEffect(() => {
       let count = 3
-    const interval = setInterval(() => {
-      count--
-      setSeconds(seconds => seconds - 1);
-      if(count ===0){
-        setStarting(false)
-        clearInterval(interval)
-      }
-    }, 1000);
+      const interval = starting ? setInterval(() => {
+        count--
+        setSeconds(seconds => seconds - 1);
+        if (count === 0) {
+          setStarting(false)
+          setBlocked(false)
+          clearInterval(interval)
+        }
+      }, 1000) : null;
     
     return () => clearInterval(interval);
-  }, []);
+  
+  }, [starting]);
 
 
- 
 
+
+const handleButton =() => setStarting(true)
   return (
     <div className="App">
     <Countdown seconds = {seconds} starting= {starting}/>
     <Scene blocked = {blocked}/>
-    <Car position= {position}/>   
+    <Car position= {position}/> 
+    <StartButton handleButton = {handleButton} blocked= {blocked}/>  
 
 
     <KeyboardEventHandler
             handleKeys={['all']}
             onKeyEvent={(key, e) => {
+              if (key === 'esc'){
+                   setBlocked(!blocked) }
+              if (!blocked){
                 switch(key){ 
-                  case 'esc':
-                    return setBlocked(!blocked)
                     case 'a':
                     return setPosition({left:'0%' })
                     case 's':
@@ -66,7 +72,7 @@ function App() {
                     }
                     default:
                     return position
-                }
+                }}
             }} />
 
 
