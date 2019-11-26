@@ -1,10 +1,11 @@
 import React from 'react'
 
-export const Countdown = () =>{
+export const Countdown = ({seconds, starting}) =>{
 
     return(
-        <span >
-           1
+
+        <span className= 'App-countdown'>
+           {starting ? seconds: ''}
         </span>
     )
 }

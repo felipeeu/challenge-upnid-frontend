@@ -14,7 +14,13 @@
  height: 100vh;
 }
 
-
+.App-countdown{
+  position: absolute;
+  font-size: 100px;
+  color: magenta;
+  font-style: italic;
+  font-weight: 800;
+}
 
 
 

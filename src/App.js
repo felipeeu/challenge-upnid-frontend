@@ -6,12 +6,34 @@ import KeyboardEventHandler from 'react-keyboard-event-handler';
 import './App.css';
 
 
+
 function App() {
   const [position , setPosition] = React.useState({left: '30%' })
   const[blocked ,setBlocked]=React.useState(false)
+  const [seconds, setSeconds] = React.useState(3)
+  const [starting,setStarting]= React.useState(true)
+
+
+  React.useEffect(() => {
+      let count = 3
+    const interval = setInterval(() => {
+      count--
+      setSeconds(seconds => seconds - 1);
+      if(count ===0){
+        setStarting(false)
+        clearInterval(interval)
+      }
+    }, 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
+
+ 
+
   return (
     <div className="App">
-    <Countdown/>
+    <Countdown seconds = {seconds} starting= {starting}/>
     <Scene blocked = {blocked}/>
     <Car position= {position}/>   
 
