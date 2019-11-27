@@ -3,6 +3,8 @@ import {Car} from './car'
 import {Scene} from './scene'
 import {Countdown} from './countdown'
 import {StartButton} from './startbutton'
+import {InputName} from './inputname'
+import{Label} from './label'
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import './App.css';
 
@@ -11,7 +13,9 @@ function App() {
   const [position, setPosition] = React.useState({left: '30%'})
   const [blocked, setBlocked] = React.useState(true)
   const [seconds, setSeconds] = React.useState(3)
+  const [start,setStart] = React.useState(true)
   const [starting, setStarting] = React.useState(false)
+  const [inputValue, setInputValue] = React.useState("")
   
 
 
@@ -31,17 +35,22 @@ React.useEffect(() => {
   
   }, [starting]);
 
+  const handleButton =() => {
+    setStart(false)
+    return setStarting(true)}
+  
+const handleInput =(value)=> {
+  setInputValue(value)
+}
 
-
-
-const handleButton =() => setStarting(true)
   return (
     <div className="App">
     <Countdown seconds = {seconds} starting= {starting}/>
+    <Label inputValue= {inputValue} seconds={seconds}/>
     <Scene blocked = {blocked}/>
     <Car position= {position}/> 
-    <StartButton handleButton = {handleButton} blocked= {blocked}/>  
-
+    <StartButton handleButton = {handleButton} start= {start}/>  
+    <InputName start= {start} handleInput= {handleInput} inputValue={inputValue}/>
 
     <KeyboardEventHandler
             handleKeys={['all']}
@@ -74,12 +83,7 @@ const handleButton =() => setStarting(true)
                     return position
                 }}
             }} />
-
-
     </div>
-
-
-
   );
 }
 

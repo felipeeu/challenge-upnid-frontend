@@ -2,14 +2,15 @@ import React from 'react'
 
 
  
-export const StartButton = ({handleButton, blocked}) =>(
+export const StartButton = ({handleButton, start}) =>{
         
+    return( 
+      start ?  
         <button 
         onClick ={()=> handleButton() }
-        className= "App-button"
-        style = {{
-            display: !blocked ? 'none': 'unset'
-        }}
-        >Iniciar</button>
-       
+        className= "App-button">
+        Iniciar
+        </button>
+        : null
     )
+}

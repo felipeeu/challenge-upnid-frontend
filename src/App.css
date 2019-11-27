@@ -26,9 +26,18 @@
   position: absolute;
   width: 30vw;
   border-radius: 5px;
-  bottom: 15px;
-  left: 5px;
+  top: 100px;
+  left: 35%;
   font-size: xx-large;
+}
+
+.App-input{
+    position: absolute;
+    top: 47px;
+    left: 35%;
+    background-color: lightcyan;
+    width: 30vw;
+    font-size: xx-large;
 }
 
 .App-link {
