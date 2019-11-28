@@ -18,11 +18,11 @@ npm start
 
 |      keys | action                        |
 |-----------|-------------------------------|
-|a          |move to left side of the road  |
-|s          |move to middle of the road     |
-|d          |move to right side of the road |
-|→          |move right |
-|←          |move left |
-|↓          |move to middle of the road |
-|esc          |pause the game|
+|`A`         |move to left side of the road  |
+|`S`          |move to middle of the road     |
+|`D`          |move to right side of the road |
+|`⭢`          |move right |
+|`⭠`          |move left |
+|`⭣`          |move to middle of the road |
+|`ESC`          |pause the game|
 
