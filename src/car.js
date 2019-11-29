@@ -6,7 +6,7 @@ export const Car = ({position}) =>(
 
         <div style ={{ 
             position: 'absolute',
-            bottom: '20%', 
+            bottom: '20%',
             ...position
              }}>
             <img src={carImage} className= "App-car"  alt='car' />

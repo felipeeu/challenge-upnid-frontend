@@ -1,27 +1,30 @@
-import React from 'react';
+import React , {useEffect,useState} from 'react';
 import {Car} from './car' 
 import {Scene} from './scene'
 import {Countdown} from './countdown'
 import {StartButton} from './startbutton'
 import {InputName} from './inputname'
 import{Label} from './label'
+import {Turn} from './turn'
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import './App.css';
 
 
 function App() {
-  const [position, setPosition] = React.useState({left: '30%'})
-  const [blocked, setBlocked] = React.useState(true)
-  const [seconds, setSeconds] = React.useState(3)
-  const [start,setStart] = React.useState(true)
-  const [starting, setStarting] = React.useState(false)
-  const [inputValue, setInputValue] = React.useState("")
+
+  const [position, setPosition] = useState({left: '30%'})
+  const [blocked, setBlocked] = useState(true)
+  const [seconds, setSeconds] = useState(3)
+  const [start,setStart] = useState(true)
+  const [starting, setStarting] = useState(false) 
+  const [inputValue, setInputValue] = useState("")
+  const [turn , setTurn] = useState(0)
+  // const [reset, setReset] = useState(false)
   
 
-
-React.useEffect(() => {
+useEffect(() => {
       let count = 3
-      const interval = starting ? setInterval(() => {
+      const interval = starting && setInterval(() => {
         count--
         setSeconds(seconds => seconds - 1);
         if (count === 0) {
@@ -29,13 +32,43 @@ React.useEffect(() => {
           setBlocked(false)
           clearInterval(interval)
         }
-      }, 1000) : null;
-    
+      }, 1000) 
     return () => clearInterval(interval);
   
   }, [starting]);
 
-  const handleButton =() => {
+  useEffect(() => {
+    let count = 0
+    const interval = seconds === 0 && setInterval(() => {
+      count++
+      setTurn(turn => turn + 1);
+      if (count === 5) {
+        setBlocked(true)
+        // setReset(true)
+        clearInterval(interval)
+      }
+    }, 5000) 
+    
+  return () => clearInterval(interval);
+}, [seconds]);
+
+
+// useEffect(() => {
+//   return () =>{setBlocked(true)
+//   setTurn(0)
+//   setStart(true)
+//   setSeconds(3)
+//   setStarting(false)
+//   setInputValue("")
+//   setReset(!reset)}
+
+// }, [reset]);
+
+
+
+
+
+const handleButton =() => {
     setStart(false)
     return setStarting(true)}
   
@@ -45,12 +78,14 @@ const handleInput =(value)=> {
 
   return (
     <div className="App">
+    <Turn blocked = {blocked} turn={turn}/>
     <Countdown seconds = {seconds} starting= {starting}/>
-    <Label inputValue= {inputValue} seconds={seconds}/>
+    <Label inputValue= {inputValue} seconds={seconds} starting= {starting}/>
     <Scene blocked = {blocked}/>
     <Car position= {position}/> 
     <StartButton handleButton = {handleButton} start= {start}/>  
     <InputName start= {start} handleInput= {handleInput} inputValue={inputValue}/>
+    
 
     <KeyboardEventHandler
             handleKeys={['all']}

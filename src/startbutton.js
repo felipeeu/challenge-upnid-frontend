@@ -1,16 +1,13 @@
 import React from 'react'
 
-
- 
 export const StartButton = ({handleButton, start}) =>{
         
     return( 
-      start ?  
+      start && 
         <button 
         onClick ={()=> handleButton() }
         className= "App-button">
         Iniciar
         </button>
-        : null
     )
 }

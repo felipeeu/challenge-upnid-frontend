@@ -1,11 +1,21 @@
 import React from 'react'
 
-export const Label = ({inputValue, seconds}) =>{
+export const Label = ({inputValue, seconds, starting}) =>{
 
     return(
-    seconds === 0 ?
-    <span>
-        Vai lá {inputValue}
+    seconds === 1 ?
+    <span className="App-label">
+      {inputValue?  `Go, ${inputValue}!` : "Go, friend!"}
+    </span>: null
+    ||
+    starting ?
+    <span className="App-label">
+        Are you ready?
     </span>: null
     
-)}
+)
+
+
+
+
+}
