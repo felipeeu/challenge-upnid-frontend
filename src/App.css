@@ -11,9 +11,12 @@
 }
 
 .App-car{
+  position: absolute;
+  bottom: 100px;
+}
+.App-carimage{
   width: 30vw;
 }
-
 .App-countdown{
   position: absolute;
   font-size: 100px;
@@ -51,10 +54,47 @@
 .App-turn{
   position: absolute;
   align-self: center;
-  top: 100px;
+  top: 60px;
   font-size: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-gameover{
+  position: absolute;
+  top: 200px;
+  font-size: xx-large;
+  align-self: center;
+  font-family: monospace;
+  color: tomato;
 }
 
 .App-link {
   color: #09d3ac;
+}
+
+
+
+@media (max-width: 415px) 
+{
+  .App-scene{
+    width: 100vw;
+    height: 90vh;
+  }
+  .App-mobilecontrol{
+    
+    position: absolute;
+    display: grid;
+    grid-template-columns: 80px 80px 80px 30px ;
+    grid-column-gap: 30px 30px 30px 30px;
+    bottom: 20px;
+  }
+
+.App-buttonmobile{
+  background-color: cadetblue;
+  width: 80px;
+  
+}
+
+  
 }
